@@ -18,6 +18,6 @@ const tasksSchema = new mongoose.Schema({
     toJSON: {virtuals: true}
 }) 
 
-const Tasks = mongoose.model("Task", tasksSchema);
+const Tasks = mongoose.model("Tasks", tasksSchema);
 
 export default Tasks;

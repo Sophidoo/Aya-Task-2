@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Lastname is Required"]
     },
-    "otherName": {
+    "othername": {
         type: String
     },
     "profilePicture": {
@@ -22,10 +22,6 @@ const userSchema = new mongoose.Schema({
     "password": {
         type: String,
         required: [true, "Password is Required"]
-    },
-    "confirmPassword": {
-        type: String,
-        required: [true, "Please Confirm password"]
     }
 },
 {

@@ -6,9 +6,10 @@ const categorySchema = new mongoose.Schema({
         type: String,
         required: [true, "Category name is required"]
     },
-    tasks: {
-        type: Array
-    }
+    tasks: [{
+        type: Mongoose.Schema.Types.ObjectId,
+        ref: "Tasks"
+    }]
 },
 {
     timestamps: true,
