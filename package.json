@@ -5,10 +5,15 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "app.js",
     "server": "nodemon app.js"
   },
+  "keywords": [
+    "mongoose",
+    "express",
+    "node",
+    "mongodb"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sophidoo/Aya-Task-2.git"
