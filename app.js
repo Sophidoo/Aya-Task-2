@@ -33,5 +33,5 @@ app.use("/api/v1/users", userRoute);
 // }
 
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3100
 app.listen(PORT, console.log(`Server is running at ${PORT}`))
