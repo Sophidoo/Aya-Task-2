@@ -1,5 +1,6 @@
 import { deleteASpecificUser, getAllUsersController, getSpecificUserController, updateUserDetailsController, updateUserPasswordController, userLoginController, userRegisterController } from "../controller/userController.js";
 import express from "express";
+import { isLogin } from "../middleware/isLogin.js";
 
 
 const userRoute = express.Router();
