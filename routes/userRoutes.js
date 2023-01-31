@@ -11,7 +11,7 @@ userRoute.post("/register", userRegisterController);
 userRoute.post("/login", userLoginController);
 
 // Get a specific user
-userRoute.get("/specificUser", getSpecificUserController);
+userRoute.get("/specificUser", isLogin, getSpecificUserController);
 
 // Get all users
 userRoute.get("", getAllUsersController);

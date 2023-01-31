@@ -102,7 +102,7 @@ export const getSpecificUserController = async(req, res) => {
                 data: userFound
             });
         }else{
-            res.josn({
+            res.json({
                 status: "Success",
                 message: "User does not exist"
             });
@@ -142,9 +142,12 @@ export const updateUserPasswordController = async(req, res) => {
     try{
         const userFound = await Users.findById(req.UserAuth);
 
+        const salt = await bcrypt.genSalt(5);
+        const passwordHash = await bcrypt.hash(req.body.password, salt)
+
         await Users.updateOne(req.UserAuth, {
             $set: {
-                password: req.body.password,
+                password: passwordHash,
             }
         },{
             new: true
