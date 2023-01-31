@@ -72,21 +72,25 @@ export const userLoginController = async(req, res) => {
     }
 }
 
-export const getAllUsersController = async(res) => {
-    const allUsers = await Users.find();
+// export const getAllUsersController = async(res) => {
+    
+//     try{
+//         const allUsers = await Users.find();
 
-    try{
-        res.json({
-            status: "success",
-            data: allUsers
-        })
-    }catch(error){
-        res.json({
-            status: "error",
-            message: error.message
-        })
-    }
-}
+//         res.json({
+//             status: "success",
+//             data: allUsers
+//         })
+
+//     }catch(error){
+//         // res.json({
+//         //     status: "error",
+//         //     message: "An error occured"
+//         // })
+//     }
+
+    
+// }
 
 export const getSpecificUserController = async(req, res) => {
     try{
