@@ -1,4 +1,4 @@
-import { deleteASpecificUser, getAllUsersController, getSpecificUserController, updateUserDetailsController, userLoginController, userRegisterController } from "../controller/userController.js";
+import { deleteASpecificUser, getAllUsersController, getSpecificUserController, updateUserDetailsController, updateUserPasswordController, userLoginController, userRegisterController } from "../controller/userController.js";
 import express from "express";
 
 
@@ -18,6 +18,9 @@ userRoute.get("", getAllUsersController);
 
 // Update User details
 userRoute.put("/update", updateUserDetailsController);
+
+// update user password
+userRoute.put("/updatepassword", updateUserPasswordController);
 
 // Delete a specific User
 userRoute.delete("/delete", deleteASpecificUser);

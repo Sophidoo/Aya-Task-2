@@ -113,7 +113,53 @@ export const getSpecificUserController = async(req, res) => {
 }
 
 export const updateUserDetailsController = async(req, res) => {
+    try{
+        const userFound = await Users.findById(req.UserAuth);
 
+        await Users.updateOne(req.UserAuth, {
+            $set: {
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                othername: req.body.othername,
+                email: req.body.email
+            }
+        },{
+            new: true
+        })
+        res.json({
+            status: "success",
+            data: userFound
+        })
+
+    }catch(error){
+        res.json({
+            status: "error",
+            message: error.message
+        })
+    }
+}
+export const updateUserPasswordController = async(req, res) => {
+    try{
+        const userFound = await Users.findById(req.UserAuth);
+
+        await Users.updateOne(req.UserAuth, {
+            $set: {
+                password: req.body.password,
+            }
+        },{
+            new: true
+        })
+        res.json({
+            status: "success",
+            data: userFound
+        })
+
+    }catch(error){
+        res.json({
+            status: "error",
+            message: error.message
+        })
+    }
 }
 
 export const deleteASpecificUser = async(req, res) => {
