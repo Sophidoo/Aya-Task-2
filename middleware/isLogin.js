@@ -1,5 +1,5 @@
-import { obtainToken } from "../util/obtainToken"
-import { verifytoken } from "../util/verifyToken";
+import { obtainToken } from "../util/obtainToken.js";
+import { verifytoken } from "../util/verifyToken.js";
 
 
 
@@ -18,3 +18,4 @@ export const isLogin = (req, res, next) => {
         next();
     }
 }
+
