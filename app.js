@@ -8,10 +8,21 @@ dotenv.config()
 dbConnect();
 
 const app = express();
+// app.use(cors());
+// // use app.cors({origin: '*'})
+app.use(
+    cors({
+        credentials: true,
+        origin: true
+    })
+)
 
 app.use(express.json());
 
+app.options('*', cors())
+
 app.use("/api/v1/users", userRoute);
+
 
 // const cors=require("cors");
 // const corsOptions ={
@@ -20,7 +31,6 @@ app.use("/api/v1/users", userRoute);
 //    optionSuccessStatus:200,
 // }
 
-app.use(cors()) // Use this after the variable declaration
 
 const PORT = process.env.PORT
 app.listen(PORT, console.log(`Server is running at ${PORT}`))
