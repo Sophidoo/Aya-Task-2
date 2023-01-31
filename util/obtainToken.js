@@ -6,7 +6,7 @@ export const obtainToken = (req, res) => {
     if(token !== undefined){
         return token
     }else{
-        return res.json({
+        res.json({
             status: "Failed",
             message: "No token attached to header"
         })

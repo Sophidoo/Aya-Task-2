@@ -43,7 +43,7 @@ export const userLoginController = async(req, res) => {
         const userFound = await Users.findOne({email});
 
         if(!userFound){
-            return res.json({
+            res.json({
                 status: "error",
                 message: "Wrong Login details"
             })
