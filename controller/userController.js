@@ -27,7 +27,7 @@ export const userRegisterController = async(req, res) => {
         })
 
         res.json({
-            status: "Success",
+            status: "success",
             data: User
         })
     }catch(error){
