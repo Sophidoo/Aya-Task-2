@@ -18,7 +18,7 @@ userRoute.get("/specificUser", isLogin, getSpecificUserController);
 userRoute.get("", getAllUsersController);
 
 // Update User details
-userRoute.put("/update", updateUserDetailsController);
+userRoute.put("/update",isLogin, updateUserDetailsController);
 
 // update user password
 userRoute.put("/updatepassword", updateUserPasswordController);
