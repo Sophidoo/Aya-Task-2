@@ -16,6 +16,10 @@ const tasksSchema = new mongoose.Schema({
     endTime: {
         type: Date,
         required: [true, "Please enter thetask end time"]
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category"
     }
 },
 {

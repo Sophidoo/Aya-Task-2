@@ -1,25 +1,37 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    "firstname": {
+    firstname: {
         type: String,
         required: [true, "Firstname is Required"]
     },
-    "lastname": {
+    lastname: {
         type: String,
         required: [true, "Lastname is Required"]
     },
-    "othername": {
+    othername: {
         type: String
     },
-    "email": {
+    email: {
         type: String,
         required: [true, "Email Address is Required"]
     },
-    "password": {
+    password: {
         type: String,
         required: [true, "Password is Required"]
-    }
+    },
+    task: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Tasks"
+        }
+    ],
+    category: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Category"
+        }
+    ],
 },
 {
     timestamps: true,

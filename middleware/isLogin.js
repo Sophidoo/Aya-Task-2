@@ -7,7 +7,7 @@ export const isLogin = (req, res, next) => {
     const token = obtainToken(req);
     const userDecoded = verifytoken(token);
 
-    req.userAuth = userDecoded.id
+    req.userAuth = userDecoded.id;
 
     if(!userDecoded){
         return res.json({
