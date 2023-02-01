@@ -9,8 +9,13 @@ const tasksSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    duration: {
-        type: Date
+    startTime: {
+        type: Date,
+        required: [true, "Please Enter the task start time"]
+    },
+    endTime: {
+        type: Date,
+        required: [true, "Please enter thetask end time"]
     }
 },
 {

@@ -2,14 +2,10 @@ import mongoose from "mongoose";
 import Tasks from "./Tasks";
 
 const categorySchema = new mongoose.Schema({
-    categoryName: {
+    categoryname: {
         type: String,
         required: [true, "Category name is required"]
-    },
-    tasks: [{
-        type: Mongoose.Schema.Types.ObjectId,
-        ref: "Tasks"
-    }]
+    }
 },
 {
     timestamps: true,
