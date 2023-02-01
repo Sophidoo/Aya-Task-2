@@ -94,21 +94,21 @@ export const getAllUsersController = async(req, res) => {
 
 export const getSpecificUserController = async(req, res) => {
     try{
-        const userFound = await Users.findById(req.UserAuth);
-
-        if(userFound){
+        console.log(req.userAuth);
+        const foundUser = await Users.findById(req.userAuth);
+        if(foundUser){
             res.json({
                 status: "Success",
-                data: userFound
+                data: {foundUser}
             });
         }else{
             res.json({
                 status: "Success",
-                message: "User does not exist"
+                message: "User with such id does not exist"
             });
         }
     }catch(error){
-        res.json(error.message);
+        res.json(error.message)
     }
 }
 
