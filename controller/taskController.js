@@ -89,8 +89,9 @@ export const getAllTasktoCategory = async(req, res) => {
     
     try{
         const tasks = await Tasks.find();
-        const userTasks = tasks.filter(u => u.user == req.userAuth && u.category == req.body.category)
+        const userTasks = tasks.filter(u => u.user == req.userAuth && u.category == req.params.category)
 
+        console.log(req.params.category)
         res.json({
             status: "success",
             data: userTasks

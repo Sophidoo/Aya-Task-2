@@ -25,7 +25,7 @@ userRoute.get("", getAllUsersController);
 userRoute.get("/task",isLogin, getAllTaskController);
 
 // get all task for 
-userRoute.get("/taskandcategory", isLogin, getAllTasktoCategory);
+userRoute.get("/taskandcategory/:category", isLogin, getAllTasktoCategory);
 
 // Update User details
 userRoute.put("/update",isLogin, updateUserDetailsController);
