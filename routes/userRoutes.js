@@ -15,6 +15,9 @@ userRoute.post("/login", userLoginController);
 // Get a specific user
 userRoute.get("/specificUser", isLogin, getSpecificUserController);
 
+// Get a specific user categories
+userRoute.get("/category", isLogin, getAllCategoriesController);
+
 // Get all users
 userRoute.get("", getAllUsersController);
 
@@ -35,6 +38,9 @@ userRoute.delete("/delete", deleteASpecificUser);
 
 // add task for a logged in user
 userRoute.post("/task", isLogin, createTaskController);
+
+// add a new category for logged in user
+userRoute.post("/category", isLogin, createCategoryController);
 
 
 export default userRoute;

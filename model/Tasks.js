@@ -18,8 +18,8 @@ const tasksSchema = new mongoose.Schema({
         // required: [true, "Please enter thetsk end time"
     },
     category: {
-        type: mongoose.Schema.Types.String,
-        ref: "Category"
+        type: String,
+        required: [true, "Please add Category"]
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
