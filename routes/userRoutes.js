@@ -1,7 +1,7 @@
 import { deleteASpecificUser, getAllUsersController, getSpecificUserController, updateUserDetailsController, updateUserPasswordController, userLoginController, userRegisterController } from "../controller/userController.js";
 import express from "express";
 import { isLogin } from "../middleware/isLogin.js";
-import { createTaskController, getAllTaskController, getAllTasktoCategory } from "../controller/taskController.js";
+import { createTaskController, deletTaskController, editTaskController, getAllTaskController, getAllTasktoCategory } from "../controller/taskController.js";
 import { createCategoryController, getAllCategoriesController } from "../controller/categoryController.js";
 
 const userRoute = express.Router();
@@ -29,6 +29,12 @@ userRoute.get("/taskandcategory/:category", isLogin, getAllTasktoCategory);
 
 // Update User details
 userRoute.put("/update",isLogin, updateUserDetailsController);
+
+// Update Task details
+userRoute.put("/updatetask/:id", editTaskController);
+
+// delete Task details
+userRoute.delete("/deletetask/:id", deletTaskController);
 
 // update user password
 userRoute.put("/updatepassword",isLogin, updateUserPasswordController);

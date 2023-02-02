@@ -9,10 +9,6 @@ const tasksSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    startTime: {
-        type: Date,
-        // required: [true, "Please Enter the task start time"]
-    },
     endTime: {
         type: Date,
         // required: [true, "Please enter thetsk end time"

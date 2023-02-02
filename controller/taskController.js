@@ -2,7 +2,7 @@ import Tasks from "../model/Tasks.js"
 import Users from "../model/User.js"
 
 export const createTaskController = async (req, res) => {
-    const {taskName, isCompleted, startTime, endTime, category} = req.body;
+    const {taskName, isCompleted, endTime, category} = req.body;
 
     try{
 
@@ -12,7 +12,6 @@ export const createTaskController = async (req, res) => {
             const task = await Tasks.create({
                 taskName,
                 isCompleted,
-                startTime,
                 endTime,
                 category,
                 user: req.userAuth
@@ -41,13 +40,10 @@ export const createTaskController = async (req, res) => {
 export const editTaskController = async(req, res) => {
     
     try{
-        const taskExist = await Tasks.findOne(req.taskName)
-
-        await Tasks.updateOne(taskName, {
+        await Tasks.findByIdAndUpdate(req.params.id, {
             $set: {
                 taskName: req.body.taskName,
                 isCompleted: req.body.isCompleted,
-                startTime: req.body.startTime,
                 endTime: req.body.endTime,
                 category: req.body.category
             }
@@ -57,7 +53,7 @@ export const editTaskController = async(req, res) => {
 
         res.json({
             status: "success",
-            data: taskExist
+            data: "Updated Successfully"
         })
     }catch(error){
         res.json({
@@ -106,11 +102,11 @@ export const getAllTasktoCategory = async(req, res) => {
 
 export const deletTaskController = async(req, res) => {
      try{
-        const task = await Tasks.findOneAndDelete(req.taskName)
+        await Tasks.findByIdAndDelete(req.params.id)
 
         res.json({
             status: "success",
-            message: "task delted successfully"
+            message: "task deleted successfully"
         })
 
      }catch(error){
