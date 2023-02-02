@@ -43,9 +43,32 @@ export const editTaskController = async(req, res) => {
         await Tasks.findByIdAndUpdate(req.params.id, {
             $set: {
                 taskName: req.body.taskName,
-                isCompleted: req.body.isCompleted,
                 endTime: req.body.endTime,
                 category: req.body.category
+            }
+        },{
+            new: true
+        })
+
+        res.json({
+            status: "success",
+            data: "Updated Successfully"
+        })
+    }catch(error){
+        res.json({
+            status: "error",
+            message: "An error occured"
+        })
+    }
+}
+
+
+export const editTaskCompleteController = async(req, res) => {
+    
+    try{
+        await Tasks.findByIdAndUpdate(req.params.id, {
+            $set: {
+                isCompleted: req.body.isCompleted
             }
         },{
             new: true
