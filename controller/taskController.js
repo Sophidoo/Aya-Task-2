@@ -1,8 +1,11 @@
-import Tasks from "../model/Tasks";
+import Tasks from "../model/Tasks.js"
+import Users from "../model/User.js"
 
-export const addTaskController = async (req, res) => {
-    const {taskName, isCompleted, startTime, endTime, category} = req.body
+export const createTaskController = async (req, res) => {
+    const {taskName, isCompleted, startTime, endTime, category} = req.body;
+
     try{
+
         const taskExist = await Tasks.findOne({taskName})
 
         if(!taskExist){
@@ -11,7 +14,8 @@ export const addTaskController = async (req, res) => {
                 isCompleted,
                 startTime,
                 endTime,
-                category
+                category,
+                user: req.userAuth
 
             })
 
@@ -66,16 +70,35 @@ export const editTaskController = async(req, res) => {
 export const getAllTaskController = async(req, res) => {
     
     try{
-        const tasks = await Tasks.find()
+        const tasks = await Tasks.find();
+        const userTasks = tasks.filter(u => u.user == req.userAuth)
 
         res.json({
             status: "success",
-            data: tasks
+            data: userTasks
         })
     }catch(error){
         res.json({
             status: "error",
-            message: "An error occured"
+            message: error.message
+        })
+    }
+}
+
+export const getAllTasktoCategory = async(req, res) => {
+    
+    try{
+        const tasks = await Tasks.find();
+        const userTasks = tasks.filter(u => u.user == req.userAuth && u.category == req.body.category)
+
+        res.json({
+            status: "success",
+            data: userTasks
+        })
+    }catch(error){
+        res.json({
+            status: "error",
+            message: error.message
         })
     }
 }

@@ -11,15 +11,19 @@ const tasksSchema = new mongoose.Schema({
     },
     startTime: {
         type: Date,
-        required: [true, "Please Enter the task start time"]
+        // required: [true, "Please Enter the task start time"]
     },
     endTime: {
         type: Date,
-        required: [true, "Please enter thetask end time"]
+        // required: [true, "Please enter thetsk end time"
     },
     category: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.String,
         ref: "Category"
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     }
 },
 {

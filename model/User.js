@@ -19,24 +19,18 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "Password is Required"]
-    },
-    task: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Tasks"
-        }
-    ],
-    category: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Category"
-        }
-    ],
+    }
 },
 {
     timestamps: true,
     toJSON: {virtuals: true}
 })
+
+// userSchema.virtual('tasks', {
+//     ref: "Tasks",
+//     localField: "_id",
+//     foreignField: "user"
+// })
 
 const User = mongoose.model("User", userSchema)
 export default User;

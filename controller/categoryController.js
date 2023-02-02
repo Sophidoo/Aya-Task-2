@@ -8,17 +8,18 @@ export const createCategoryController = async(req, res) => {
         if(categoryExist){
             res.json({
                 status: "error",
-                message: "User does not exist"
+                message: "Categoray Already Exist"
             })
         }
 
         const category = await Category.create({
-            categoryname
+            categoryname,
+            user: req.userAuth
         })
 
         res.json({
             status: "success",
-            data: categoryname
+            data: category
         })
     }catch(error){
         res.json({
@@ -53,10 +54,11 @@ export const editCategoryController = async(req, res) => {
 export const getAllCategoriesController = async(req, res) => {
     try{
         const category = await Category.find()
+        const userCategories = category.filter(u => u.user == req.userAuth)
 
         res.json({
             status: "success",
-            data: category
+            data: userCategories
         })
     }catch(error){
         res.json({
@@ -68,7 +70,7 @@ export const getAllCategoriesController = async(req, res) => {
 
 export const deletCategoryController = async(req, res) => {
     try{
-        await Category.findOneAndDelete(req._taskName)
+        await Category.findOneAndDelete(req.body.categoryname)
 
         res.json({
             status: "success",

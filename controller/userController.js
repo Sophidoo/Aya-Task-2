@@ -1,6 +1,7 @@
 import Users from "../model/User.js";
 import bcrypt from "bcrypt";
 import generateToken from "../util/generateToken.js";
+import Tasks from "../model/Tasks.js";
 
 export const userRegisterController = async(req, res) => {
     const{firstname, lastname, othername, email, password} = req.body;
@@ -114,21 +115,23 @@ export const getSpecificUserController = async(req, res) => {
 
 export const updateUserDetailsController = async(req, res) => {
     try{
-        const userFound = await Users.findById(req.UserAuth);
 
-        await Users.updateOne(req.UserAuth, {
+        await Users.updateOne(req.userAuth, {
             $set: {
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 othername: req.body.othername,
-                email: req.body.email
+                email: req.body.email,
+                task: Tasks.find(req.userAuth)
+                
             }
+            
         },{
             new: true
         })
         res.json({
             status: "success",
-            data: userFound
+            data: "Updated Successfully"
         })
 
     }catch(error){
@@ -140,21 +143,22 @@ export const updateUserDetailsController = async(req, res) => {
 }
 export const updateUserPasswordController = async(req, res) => {
     try{
-        const userFound = await Users.findById(req.UserAuth);
+        // const userFound = await Users.findById(req.UserAuth);
 
         const salt = await bcrypt.genSalt(5);
         const passwordHash = await bcrypt.hash(req.body.password, salt)
 
-        await Users.updateOne(req.UserAuth, {
+        await Users.findByIdAndUpdate(req.userAuth, {
             $set: {
                 password: passwordHash,
             }
         },{
             new: true
         })
+
         res.json({
             status: "success",
-            data: userFound
+            data: "password updated"
         })
 
     }catch(error){
