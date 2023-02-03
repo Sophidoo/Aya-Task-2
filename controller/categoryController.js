@@ -70,7 +70,7 @@ export const getAllCategoriesController = async(req, res) => {
 
 export const deletCategoryController = async(req, res) => {
     try{
-        await Category.findOneAndDelete(req.body.categoryname)
+        await Category.findByIdAndDelete(req.params.id)
 
         res.json({
             status: "success",
