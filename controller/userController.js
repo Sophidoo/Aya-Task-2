@@ -10,7 +10,7 @@ export const userRegisterController = async(req, res) => {
         const userFound = await Users.findOne({email});
 
         if(userFound){
-            return res.json({
+            res.json({
                 status: "error",
                 data: "User Already Exists"
             })

@@ -5,29 +5,20 @@ export const createTaskController = async (req, res) => {
     const {taskName, isCompleted, endTime, category} = req.body;
 
     try{
+        const task = await Tasks.create({
+            taskName,
+            isCompleted,
+            endTime,
+            category,
+            user: req.userAuth
 
-        const taskExist = await Tasks.findOne({taskName})
+        })
 
-        if(!taskExist){
-            const task = await Tasks.create({
-                taskName,
-                isCompleted,
-                endTime,
-                category,
-                user: req.userAuth
-
-            })
-
-            res.json({
-                status: "success",
-                data: task
-            })
-        }else{
-            res.json({
-                status: "error",
-                message: "Task Already exists"
-            })
-        }
+        res.json({
+            status: "success",
+            data: task
+        })
+        
     }catch(error){
         res.json({
             status: "error",
